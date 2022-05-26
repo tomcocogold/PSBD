@@ -1,11 +1,13 @@
 from tkinter import *
 import register_window
+import account_window
 import mysql.connector as sql
 
 
 def everything():
     def login():
-        pass
+        login_window.destroy()
+        account_window.everything()
 
     def register():
         login_window.destroy()
@@ -13,8 +15,8 @@ def everything():
 
     login_window = Tk()
 
-    window_width = 1000
-    window_height = 700
+    window_width = 900
+    window_height = 600
     screen_width = login_window.winfo_screenwidth()
     screen_height = login_window.winfo_screenheight()
 

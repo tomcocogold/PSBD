@@ -19,8 +19,8 @@ def everything():
         pass
 
     register_window = Tk()
-    window_width = 1000
-    window_height = 700
+    window_width = 900
+    window_height = 600
     screen_width = register_window.winfo_screenwidth()
     screen_height = register_window.winfo_screenheight()
 

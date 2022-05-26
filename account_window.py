@@ -1,25 +1,44 @@
 from tkinter import *
-
-root = Tk()
-root.title('Model Definition')
-root.resizable(width=FALSE, height=FALSE)
-root.geometry('{}x{}'.format(460, 350))
-
-top_frame = Frame(root, bg='cyan', width = 450, height=50, pady=3).grid(row=0, columnspan=3)
-Label(top_frame, text = 'Model Dimensions').grid(row = 0, columnspan = 3)
-Label(top_frame, text = 'Width:').grid(row = 1, column = 0)
-Label(top_frame, text = 'Length:').grid(row = 1, column = 2)
-entry_W = Entry(top_frame).grid(row = 1, column = 1)
-entry_L = Entry(top_frame).grid(row = 1, column = 3)
-#Label(top_frame, text = '').grid(row = 2, column = 2)
-
-center = Frame(root, bg='gray2', width=50, height=40, padx=3, pady=3).grid(row=1, columnspan=3)
-ctr_left = Frame(center, bg='blue', width=100, height=190).grid(column = 0, row = 1, rowspan = 2)
-ctr_mid = Frame(center, bg='yellow', width=250, height=190, padx=3, pady=3).grid(column = 1, row=1, rowspan=2)
-ctr_right = Frame(center, bg='green', width=100, height=190, padx=3, pady=3).grid(column = 2, row=1, rowspan=2)
-
-btm_frame = Frame(root, bg='white', width = 450, height = 45, pady=3).grid(row = 3, columnspan = 3)
-btm_frame2 = Frame(root, bg='lavender', width = 450, height = 60, pady=3).grid(row = 4, columnspan = 3)
+from tkinter import ttk
+import login_window
+import register_window
+import mysql.connector as sql
 
 
-root.mainloop()
+def everything():
+
+    account_window = Tk()
+    window_width = 900
+    window_height = 600
+    screen_width = account_window.winfo_screenwidth()
+    screen_height = account_window.winfo_screenheight()
+
+    x = int((screen_width / 2) - (window_width / 2))
+    y = int((screen_height / 2) - (window_height / 2))
+
+    account_window.geometry("{}x{}+{}+{}".format(window_width, window_height, x, y))
+    account_window.title("KOREPETIX/PANEL UŻYTKOWNIKA")
+    account_window.config(background="#29fbc1")
+    account_window.resizable(FALSE, FALSE)
+
+    notebook = ttk.Notebook(account_window)  # widget that manages a collection of windows/displays
+    tab1 = Frame(notebook, bg="#29fbc1")  # new frame for tab 1
+    tab2 = Frame(notebook, bg="#29fbc1")  # new frame for tab 2
+    tab3 = Frame(notebook, bg="#29fbc1")  # new frame for tab 3
+
+    notebook.add(tab1, text='Dane użytkownika')
+    notebook.add(tab2, text='Ogłoszenia')
+    notebook.add(tab3, text='Ustawienia konta')
+    notebook.pack(expand=True, fill='both')
+    # expand = expand to fill any space not otherwise used
+    # fill = fill space on x and y axis
+
+    frame1 = Frame(tab1)
+    frame1.pack()
+    
+
+    frame2 = Frame(tab2)
+    frame2.pack()
+
+
+    account_window.mainloop()
