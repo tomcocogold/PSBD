@@ -1,5 +1,6 @@
 import login_window
 import search_engine
 import account_window
+import moderator_window
 
-account_window.everything()
+login_window.everything()

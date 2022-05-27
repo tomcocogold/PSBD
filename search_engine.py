@@ -2,13 +2,19 @@ from tkinter import *
 from tkinter import ttk
 import login_window
 import register_window
+import account_window
 import mysql.connector as sql
 
 
 def everything():
 
+    def return_button():
+        search_window.destroy()
+        account_window.everything()
+
     def search_tutors():
         pass
+
     def search_pupils():
         pass
 
@@ -40,10 +46,14 @@ def everything():
     frame1.pack()
     Entry(frame1, width=50).grid(row=0, column=0)
     Button(frame1, text="Szukaj", command=search_tutors).grid(row=0, column=1)
+    Label(frame1, text="                  ", bg="#29fbc1").grid(row=0, column=2, sticky="nsew")
+    Button(frame1, text="Wróć", command=return_button).grid(row=0, column=3)
 
     frame2 = Frame(tab2)
     frame2.pack()
     Entry(frame2, width=50).grid(row=0, column=0)
     Button(frame2, text="Szukaj", command=search_pupils).grid(row=0, column=1)
+    Label(frame2, text="                  ", bg="#29fbc1").grid(row=0, column=2, sticky="nsew")
+    Button(frame2, text="Wróć", command=return_button).grid(row=0, column=3)
 
     search_window.mainloop()

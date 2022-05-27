@@ -1,5 +1,6 @@
 from tkinter import *
 import login_window
+import account_window
 import mysql.connector as sql
 
 
@@ -10,7 +11,8 @@ def everything():
         login_window.everything()
 
     def create_account():
-        pass
+        register_window.destroy()
+        account_window.everything()
 
     def tutor():
         pass
@@ -46,7 +48,7 @@ def everything():
     # Surname
     Label(frame, text="Nazwisko", font=('Arial', 10), bg="#29fbc1", pady=5).grid(row=15, column=0, sticky="nsew")
 
-    Entry(frame, font=("Arial", 14), fg="black", bg="white", show="*").grid(row=20, column=0, sticky="nsew")
+    Entry(frame, font=("Arial", 14), fg="black", bg="white").grid(row=20, column=0, sticky="nsew")
 
     # email
     Label(frame, text="Email", font=('Arial', 10), bg="#29fbc1", pady = 5).grid(row=25, column=0, sticky="nsew")
