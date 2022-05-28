@@ -7,15 +7,16 @@ import mysql.connector as sql
 
 
 def everything():
+    color = "#29fbc1"
 
     def return_button():
         search_window.destroy()
         account_window.everything()
 
-    def search_tutors():
+    def search_tutors_adverts():
         pass
 
-    def search_pupils():
+    def search_pupils_adverts():
         pass
 
     search_window = Tk()
@@ -45,15 +46,15 @@ def everything():
     frame1 = Frame(tab1)
     frame1.pack()
     Entry(frame1, width=50).grid(row=0, column=0)
-    Button(frame1, text="Szukaj", command=search_tutors).grid(row=0, column=1)
-    Label(frame1, text="                  ", bg="#29fbc1").grid(row=0, column=2, sticky="nsew")
+    Button(frame1, text="Szukaj", command=search_tutors_adverts).grid(row=0, column=1)
+    Label(frame1, text="                  ", bg=color).grid(row=0, column=2, sticky="nsew")
     Button(frame1, text="Wróć", command=return_button).grid(row=0, column=3)
 
     frame2 = Frame(tab2)
     frame2.pack()
     Entry(frame2, width=50).grid(row=0, column=0)
-    Button(frame2, text="Szukaj", command=search_pupils).grid(row=0, column=1)
-    Label(frame2, text="                  ", bg="#29fbc1").grid(row=0, column=2, sticky="nsew")
+    Button(frame2, text="Szukaj", command=search_pupils_adverts).grid(row=0, column=1)
+    Label(frame2, text="                  ",bg=color).grid(row=0, column=2, sticky="nsew")
     Button(frame2, text="Wróć", command=return_button).grid(row=0, column=3)
 
     search_window.mainloop()

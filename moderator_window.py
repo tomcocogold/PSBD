@@ -6,6 +6,7 @@ import mysql.connector as sql
 
 
 def everything():
+    color = "#29fbc1"
 
     def log_out():
         account_window.destroy()
@@ -28,14 +29,14 @@ def everything():
 
     account_window.geometry("{}x{}+{}+{}".format(window_width, window_height, x, y))
     account_window.title("KOREPETIX/PANEL ADMINISTRATORA")
-    account_window.config(background="#29fbc1")
+    account_window.config(background=color)
     account_window.resizable(FALSE, FALSE)
 
     notebook = ttk.Notebook(account_window)  # widget that manages a collection of windows/displays
-    tab1 = Frame(notebook, bg="#29fbc1")  # new frame for tab 1
-    tab2 = Frame(notebook, bg="#29fbc1")  # new frame for tab 2
-    tab3 = Frame(notebook, bg="#29fbc1")  # new frame for tab 3
-    tab4 = Frame(notebook, bg="#29fbc1")  # new frame for tab 3
+    tab1 = Frame(notebook, bg=color)  # new frame for tab 1
+    tab2 = Frame(notebook, bg=color)  # new frame for tab 2
+    tab3 = Frame(notebook, bg=color)  # new frame for tab 3
+    tab4 = Frame(notebook, bg=color)  # new frame for tab 3
 
     notebook.add(tab1, text='Raporty')
     notebook.add(tab2, text='Ogłoszenia')
@@ -56,11 +57,11 @@ def everything():
 
     frame4 = Frame(tab4) # ustawienia konta administratora
     frame4.pack()
-    Label(frame4, text="", bg="#29fbc1").grid(row=0, column=0, sticky="nsew")
+    Label(frame4, text="", bg=color).grid(row=0, column=0, sticky="nsew")
     Button(frame4, text="Zmień dane", command=change_data).grid(row=5, column=0)
-    Label(frame4, text="", bg="#29fbc1").grid(row=10, column=0, sticky="nsew")
+    Label(frame4, text="", bg=color).grid(row=10, column=0, sticky="nsew")
     Button(frame4, text="Zmień Hasło", command=change_password).grid(row=15, column=0)
-    Label(frame4, text="", bg="#29fbc1").grid(row=20, column=0, sticky="nsew")
+    Label(frame4, text="", bg=color).grid(row=20, column=0, sticky="nsew")
     Button(frame4, text="Wyloguj się", command=log_out).grid(row=25, column=0)
 
     account_window.mainloop()
