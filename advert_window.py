@@ -17,7 +17,38 @@ def everything():
         pass
 
     def add_opinion():
-        pass
+        def opinion_return_button():
+            add_opinion_window.destroy()
+
+        def add_opinion_1():
+            pass
+
+        add_opinion_window = Toplevel(bg=color)
+        add_opinion_window.title("Dodaj opinię")
+        add_opinion_window.geometry("500x400")
+        opinion_frame = Frame(add_opinion_window, bg=color)
+        opinion_frame.pack()
+
+        grade = Label(opinion_frame, text="Ocena", font=("Arial", 10), bg=color)
+        opinion = Label(opinion_frame, text="Opinia:", font=("Arial", 10), bg=color)
+
+        slider = Scale(opinion_frame, from_=0, to=5, orient=HORIZONTAL)
+        opinion_area = Frame(opinion_frame)
+        opinion_entry = Text(opinion_area, width=30, height=3)
+        opinion_return_button = Button(opinion_frame, text="Wróć", command=opinion_return_button)
+        add_opinion_button_1 = Button(opinion_frame, text="Dodaj opinię", command=add_opinion_1)
+
+        grade.grid(row=0, column=0)
+        opinion.grid(row=5, column=0)
+
+        slider.grid(row=0, column=1)
+        opinion_area.grid(row=5, column=1)
+        opinion_entry.grid(row=5, column=1)
+
+        opinion_return_button.grid(row=10, column=0)
+        add_opinion_button_1.grid(row=10, column=1)
+
+        add_opinion_window.mainloop()
 
     advert_window = Tk()
 

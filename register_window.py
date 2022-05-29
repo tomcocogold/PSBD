@@ -49,12 +49,12 @@ def everything():
     # Surname
     Label(frame, text="Nazwisko", font=('Arial', 10), bg=color, pady=5).grid(row=15, column=0, sticky="nsew")
 
-    Entry(frame, font=("Arial", 14), fg="black", bg=color).grid(row=20, column=0, sticky="nsew")
+    Entry(frame, font=("Arial", 14), fg="black", bg="white").grid(row=20, column=0, sticky="nsew")
 
     # email
     Label(frame, text="Email", font=('Arial', 10), bg=color, pady = 5).grid(row=25, column=0, sticky="nsew")
 
-    Entry(frame, font=("Arial", 14), fg="black", bg=color).grid(row=30, column=0, sticky="nsew")
+    Entry(frame, font=("Arial", 14), fg="black", bg="white").grid(row=30, column=0, sticky="nsew")
 
     # password
     Label(frame, text="Hasło", font=('Arial', 10), bg=color, pady = 5).grid(row=35, column=0, sticky="nsew")
