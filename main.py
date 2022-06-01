@@ -5,4 +5,4 @@ import search_engine
 import moderator_window
 import advert_window
 
-advert_window.everything()
+login_window.everything()

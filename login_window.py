@@ -1,15 +1,42 @@
 from tkinter import *
+from tkinter import messagebox
 import register_window
 import account_window
-import mysql.connector as sql
-
+import mysql.connector as mysql
 
 def everything():
     color = "#29fbc1"
 
     def login():
-        login_window.destroy()
-        account_window.everything()
+        cnx = mysql.connect(user='root', password='',
+                                      host='127.0.0.1',
+                                      database='psbd')
+        cursor = cnx.cursor()
+
+        query = "SELECT email, haslo FROM uzytkownik_dane"
+
+        entered_email = email_entry.get()
+        entered_password = password_entry.get()
+
+        cursor.execute(query)
+
+        existing_account = False
+
+        for (email, haslo) in cursor:
+            if(entered_email, entered_password) == (email, haslo):
+                existing_account = True
+                break
+
+        cursor.close()
+        cnx.close()
+
+        if existing_account:
+            login_window.destroy()
+            account_window.everything()
+        else:
+            messagebox.showwarning(title='Nieudane logowanie', message='Spróbuj ponownie')
+            email_entry.delete(0, "end")
+            password_entry.delete(0, "end")
 
     def register():
         login_window.destroy()
@@ -32,27 +59,35 @@ def everything():
     login_window.resizable(FALSE, FALSE)
 
     frame = Frame(login_window)
+
     frame.pack()
     # login
-    Label(frame, text="Logowanie", font=("Arial", 20), bg=color, pady=30).grid(row=0, column=0, sticky="nsew")
+    login_label = Label(frame, text="Logowanie", font=("Arial", 20), bg=color, pady=30)
 
     # email
-    Label(frame, text="Email", font=('Arial', 10), bg=color, pady=5).grid(row=2, column=0, sticky="nsew")
-
-    Entry(frame, font=("Arial", 14), fg="black", bg="white").grid(row=3, column=0, sticky="nsew")
+    email_label = Label(frame, text="Email", font=('Arial', 10), bg=color, pady=5)
+    email_entry = Entry(frame, font=("Arial", 14), fg="black", bg="white")
 
     # password
-    Label(frame, text="Hasło", font=('Arial', 10),bg=color, pady=5).grid(row=5, column=0, sticky="nsew")
-
-    Entry(frame, font=("Arial", 14), fg="black", bg="white", show="*").grid(row=6, column=0, sticky="nsew")
+    password_label = Label(frame, text="Hasło", font=('Arial', 10),bg=color, pady=5)
+    password_entry = Entry(frame, font=("Arial", 14), fg="black", bg="white", show="*")
 
     # login button
-    Label(frame, text="", font=('Arial', 10), bg=color, pady=5).grid(row=7, column=0, sticky="nsew")
+    empty_label1 = Label(frame, text="", font=('Arial', 10), bg=color, pady=5)
+    login_button = Button(frame, text="Zaloguj się", command=login)
 
-    Button(frame, text="Zaloguj się", command=login).grid(row=8, column=0, sticky="nsew")
     # register button
-    Label(frame, text="", font=('Arial', 10), bg=color).grid(row=9, column=0, sticky="nsew")
+    empty_label2 = Label(frame, text="", font=('Arial', 10), bg=color)
+    register_button = Button(frame, text="Zarejestruj się", command=register)
 
-    Button(frame, text="Zarejestruj się", command=register).grid(row=10, column=0, sticky="nsew")
+    login_label.grid(row=5, column=0, sticky="nsew")
+    email_label.grid(row=10, column=0, sticky="nsew")
+    email_entry.grid(row=15, column=0, sticky="nsew")
+    password_label.grid(row=20, column=0, sticky="nsew")
+    password_entry.grid(row=25, column=0, sticky="nsew")
+    empty_label1.grid(row=30, column=0, sticky="nsew")
+    login_button.grid(row=35, column=0, sticky="nsew")
+    empty_label2.grid(row=40, column=0, sticky="nsew")
+    register_button.grid(row=45, column=0, sticky="nsew")
 
     login_window.mainloop()

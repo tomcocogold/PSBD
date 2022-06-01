@@ -1,7 +1,7 @@
 from tkinter import *
 import login_window
 import account_window
-import mysql.connector as sql
+import mysql.connector as mysql
 
 
 def everything():

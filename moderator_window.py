@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import login_window
 import register_window
-import mysql.connector as sql
+import mysql.connector as mysql
 
 
 def everything():
