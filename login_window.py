@@ -1,38 +1,49 @@
 from tkinter import *
 from tkinter import messagebox
+import moderator_window
 import register_window
 import account_window
 import mysql.connector as mysql
+
 
 def everything():
     color = "#29fbc1"
 
     def login():
         cnx = mysql.connect(user='root', password='',
-                                      host='127.0.0.1',
-                                      database='psbd')
-        cursor = cnx.cursor()
-
-        query = "SELECT email, haslo FROM uzytkownik_dane"
+                            host='127.0.0.1',
+                            database='psbd')
+        cursor = cnx.cursor(buffered=True)
 
         entered_email = email_entry.get()
         entered_password = password_entry.get()
 
+        existing_account = 0
+
+        query = "SELECT email, haslo FROM administrator"
         cursor.execute(query)
-
-        existing_account = False
-
         for (email, haslo) in cursor:
-            if(entered_email, entered_password) == (email, haslo):
-                existing_account = True
+            if (entered_email, entered_password) == (email, haslo):
+                existing_account = 2
+                break
+
+        query_2 = "SELECT iduzytkownika, email, haslo FROM uzytkownik_dane"
+        cursor.execute(query_2)
+        for iduzytkownika, email, haslo in cursor:
+            if (entered_email, entered_password) == (email, haslo):
+                existing_account = 1
+                user_id = iduzytkownika
                 break
 
         cursor.close()
         cnx.close()
-
-        if existing_account:
+        print(existing_account)
+        if existing_account == 2:
             login_window.destroy()
-            account_window.everything()
+            moderator_window.everything()
+        elif existing_account == 1:
+            login_window.destroy()
+            account_window.everything(iduzytkownika)
         else:
             messagebox.showwarning(title='Nieudane logowanie', message='Spróbuj ponownie')
             email_entry.delete(0, "end")
@@ -69,7 +80,7 @@ def everything():
     email_entry = Entry(frame, font=("Arial", 14), fg="black", bg="white")
 
     # password
-    password_label = Label(frame, text="Hasło", font=('Arial', 10),bg=color, pady=5)
+    password_label = Label(frame, text="Hasło", font=('Arial', 10), bg=color, pady=5)
     password_entry = Entry(frame, font=("Arial", 14), fg="black", bg="white", show="*")
 
     # login button

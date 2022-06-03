@@ -6,7 +6,7 @@ import register_window
 import mysql.connector as mysql
 
 
-def everything():
+def everything(user_id):
     color = "#29fbc1"
 
     def log_out():
@@ -170,22 +170,39 @@ def everything():
 
     frame1 = Frame(tab1) # dane użytkownika
     frame1.pack()
+    cnx = mysql.connect(user='root', password='',
+                        host='127.0.0.1',
+                        database='psbd')
+    cursor = cnx.cursor(buffered=True)
+
+    query = "SELECT iduzytkownika, imie, nazwisko, email FROM uzytkownik_dane"
+    cursor.execute(query)
+    for iduzytkownika, imie, nazwisko, email in cursor:
+        if user_id == iduzytkownika:
+            imie_text = imie
+            nazwisko_text = nazwisko
+            email_text = email
+            break
+
+    cursor.close()
+    cnx.close()
+
     # register
     Label(frame1, text="Dane użytkownika", font=("Arial", 20), bg=color, pady=30).grid(row=0, column=0, sticky="nsew")
 
     # Name
     Label(frame1, text="Imię", font=('Arial', 10), bg=color, pady=5).grid(row=5, column=0, sticky="nsew")
-    Label(frame1, text="", font=("Arial", 14), fg="black", bg="white").grid(row=10, column=0, sticky="nsew")
+    Label(frame1, text=imie_text, font=("Arial", 14), fg="black", bg="white").grid(row=10, column=0, sticky="nsew")
 
     # Surname
     Label(frame1, text="Nazwisko", font=('Arial', 10), bg=color, pady=5).grid(row=15, column=0, sticky="nsew")
-    Label(frame1, text="", font=("Arial", 14), fg="black", bg="white").grid(row=20, column=0, sticky="nsew")
+    Label(frame1, text=nazwisko_text, font=("Arial", 14), fg="black", bg="white").grid(row=20, column=0, sticky="nsew")
 
     # email
     Label(frame1, text="Email", font=('Arial', 10), bg=color, pady=5).grid(row=25, column=0, sticky="nsew")
-    Label(frame1, text="", font=("Arial", 14), fg="black", bg="white").grid(row=30, column=0, sticky="nsew")
+    Label(frame1, text=email_text, font=("Arial", 14), fg="black", bg="white").grid(row=30, column=0, sticky="nsew")
     Label(frame1, text="Rodzaj konta", font=('Arial', 10), bg=color, pady=5).grid(row=35, column=0, sticky="nsew")
-    Label(frame1, text="", font=("Arial", 14), fg="black", bg="white").grid(row=40, column=0, sticky="nsew")
+    Label(frame1, text="korepetytor", font=("Arial", 14), fg="black", bg="white").grid(row=40, column=0, sticky="nsew")
 
     frame2 = Frame(tab2) # moje ogłoszenia
     frame2.pack()
