@@ -50,8 +50,18 @@ def everything():
             cursor.execute(new_account, (str(entered_password), str(entered_name),
                            str(entered_surname), str(entered_email)))
             register_window.destroy()
-            account_window.everything() #TODO wyciągnąć z bazy danych iduzytkownika
-        cnx.commit()
+            messagebox.showinfo(title='Rejestracja powiodła się', message='Życzymy miłego zakuwania')
+            cnx.commit()
+            cnx.free_result()
+            query_2 = "SELECT iduzytkownika, email, haslo FROM uzytkownik_dane"
+            cursor.execute(query_2)
+            for iduzytkownika, email, haslo in cursor:
+                if (entered_email, entered_password) == (email, haslo):
+                    user_id = iduzytkownika
+                    break
+            print(user_id)
+            account_window.everything(user_id) #TODO wyciągnąć z bazy danych iduzytkownika
+
         cursor.close()
         cnx.close()
 

@@ -50,11 +50,40 @@ def everything():
     Label(frame1, text="                  ", bg=color).grid(row=0, column=2, sticky="nsew")
     Button(frame1, text="Wróć", command=return_button).grid(row=0, column=3)
 
+    scrollbar = Scrollbar(frame1, bg=color)
+    scrollbar.grid(rowspan=10, column=10, sticky="ns")
+    advert1 = Button(frame1, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert2 = Button(frame1, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert3 = Button(frame1, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert4 = Button(frame1, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert5 = Button(frame1, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+
+    advert1.grid(row=10, columnspan=4, sticky="nsew")
+    advert2.grid(row=15, columnspan=4, sticky="nsew")
+    advert3.grid(row=20, columnspan=4, sticky="nsew")
+    advert4.grid(row=25, columnspan=4, sticky="nsew")
+    advert5.grid(row=30, columnspan=4, sticky="nsew")
+
     frame2 = Frame(tab2)
     frame2.pack()
     Entry(frame2, width=50).grid(row=0, column=0)
     Button(frame2, text="Szukaj", command=search_pupils_adverts).grid(row=0, column=1)
-    Label(frame2, text="                  ",bg=color).grid(row=0, column=2, sticky="nsew")
+    Label(frame2, text="                  ", bg=color).grid(row=0, column=2, sticky="nsew")
     Button(frame2, text="Wróć", command=return_button).grid(row=0, column=3)
+
+    scrollbar = Scrollbar(frame2, bg=color)
+    scrollbar.grid(rowspan=10, column=10, sticky="ns")
+    advert1 = Button(frame2, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert2 = Button(frame2, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert3 = Button(frame2, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert4 = Button(frame2, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+    advert5 = Button(frame2, text="Przedmiot: matematyka\nCena[zł/h]: 50\nOpis: nowe ogłoszenie")
+
+    advert1.grid(row=10, columnspan=4, sticky="nsew")
+    advert2.grid(row=15, columnspan=4, sticky="nsew")
+    advert3.grid(row=20, columnspan=4, sticky="nsew")
+    advert4.grid(row=25, columnspan=4, sticky="nsew")
+    advert5.grid(row=30, columnspan=4, sticky="nsew")
+
 
     search_window.mainloop()
